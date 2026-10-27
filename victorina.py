@@ -37,7 +37,7 @@ def answer_quiz(user_id, text):
         game["score"] += 1
 
     game["step"] += 1
-    if game["score"] >= len(QUESTIONS):
+    if game["step"] >= len(QUESTIONS):
         score = game["score"]
         del GAMES[user_id]
         return f"Игра окончена. Счёт: {score}/{len(QUESTIONS)}"
