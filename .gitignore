@@ -1,4 +1,3 @@
 *.iml
+*.env
 /.idea/
-
-victorina/.env
