@@ -27,7 +27,8 @@ def main():
 
 
 def welcome() -> str:
-    return (f"Что бы получить медиа используйте команды 'фото' или 'видео'\n"
+    return (f"'Медиа'\n"
+            f"Чтобы получить медиа используйте команды 'фото' или 'видео'\n"
             f"Для выхода можете использовать: {', '.join(EXIT_COMMAND)}")
 
 
@@ -36,18 +37,21 @@ def run(vk, event, keyboard=None) -> bool:
     text = message.get("text", "").strip().lower()
     if text == "фото":
         if PHOTO_ATTACHMENT:
-            send_message(vk, message["peer_id"], "Вот вам фоточка", attachment=PHOTO_ATTACHMENT, keyboard=keyboard)
+            send_message(vk, message["peer_id"], "📸 Вот вам фоточка", attachment=PHOTO_ATTACHMENT, keyboard=keyboard)
         else:
             send_message(vk, message["peer_id"], "Добавьте VK_PHOTO_ATTACHMENT=photoOWNER_ID_MEDIA_ID в .env")
     elif text == "видео":
         if VIDEO_ATTACHMENT:
-            send_message(vk, message["peer_id"], "Вот вам видео", attachment=VIDEO_ATTACHMENT, keyboard=keyboard)
+            send_message(vk, message["peer_id"], "🎥 Вот вам видео", attachment=VIDEO_ATTACHMENT, keyboard=keyboard)
         else:
             send_message(vk, message["peer_id"], "Добавьте VK_VIDEO_ATTACHMENT=videoOWNER_ID_MEDIA_ID в .env")
     elif text in EXIT_COMMAND:
         return True
     else:
-        send_message(vk, message["peer_id"], "Команды: фото, видео", keyboard=keyboard)
+        send_message(vk,
+                     message["peer_id"],
+                     f"⚠️ Команды: фото, видео\nДля выхода: {', '.join(EXIT_COMMAND)}",
+                     keyboard=keyboard)
     return False
 
 

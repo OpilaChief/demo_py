@@ -43,7 +43,7 @@ def main():
                 USERS[user_id] = {'module': None}
                 _send_message_select_block(vk, peer_id)
             else:
-                answer = f"Если хотите на начать введите одну из команд:\n{', '.join(START_COMMANDS)}"
+                answer = f"Чтобы начать, введите одну из команд:\n{', '.join(START_COMMANDS)}"
                 send_message(vk, peer_id, answer)
         else:
             module = user['module']
@@ -54,16 +54,18 @@ def main():
             else:
                 if text in MODULES:
                     user['module'] = text
-                    send_message(vk, peer_id, f'Вы выбрали {text}\n{WELCOME[text]()}')
+                    send_message(vk, peer_id, f'Вы выбрали {WELCOME[text]()}')
                 elif text in EXIT_COMMAND:
                     USERS.pop(user_id)
                     send_message(vk, peer_id, 'Пока-пока, приходите еще ❤️')
                 else:
-                    send_message(vk, peer_id, f"Попробуйте еще раз:\n{', '.join(MODULES.keys())}")
+                    send_message(vk, peer_id, f"Попробуйте еще раз:\n{', '.join(MODULES_NAME.keys())}")
 
 
 def _send_message_select_block(vk, peer_id):
-    return send_message(vk, peer_id, f"Выбери блок:\n{', '.join(MODULES.keys())}", keyboard=start_menu_keyboard())
+    return send_message(
+        vk, peer_id, f"Выберите блок:\n{', '.join(MODULES_NAME.keys())}", keyboard=start_menu_keyboard()
+    )
 
 
 if __name__ == "__main__":
