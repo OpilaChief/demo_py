@@ -16,13 +16,13 @@ GROUP_ID = int(os.getenv("VK_GROUP_ID", "0"))
 USERS = {}
 
 
-def start_menu_keyboard():
-    kb = VkKeyboard(one_time=False)
-    for i, name in enumerate(MODULES_NAME):
-        if i > 0 and i % 2 == 0:
-            kb.add_line()
-        kb.add_callback_button(name, color=VkKeyboardColor.PRIMARY, payload={"text": name})
-    return kb.get_keyboard()
+# def start_menu_keyboard():
+#     kb = VkKeyboard(one_time=False)
+#     for i, name in enumerate(MODULES_NAME):
+#         if i > 0 and i % 2 == 0:
+#             kb.add_line()
+#         kb.add_callback_button(name, color=VkKeyboardColor.PRIMARY, payload={"text": name})
+#     return kb.get_keyboard()
 
 
 def main():
@@ -59,12 +59,12 @@ def main():
                     USERS.pop(user_id)
                     send_message(vk, peer_id, 'Пока-пока, приходите еще ❤️')
                 else:
-                    send_message(vk, peer_id, f"Попробуйте еще раз:\n{', '.join(MODULES_NAME.keys())}")
+                    send_message(vk, peer_id, f"Попробуйте еще раз:\n{', '.join(MODULES_NAME)}")
 
 
 def _send_message_select_block(vk, peer_id):
     return send_message(
-        vk, peer_id, f"Выберите блок:\n{', '.join(MODULES_NAME.keys())}", keyboard=start_menu_keyboard()
+        vk, peer_id, f"Выберите блок:\n{', '.join(MODULES_NAME)}"
     )
 
 

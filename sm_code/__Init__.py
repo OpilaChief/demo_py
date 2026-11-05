@@ -1,15 +1,17 @@
-# Ручной словарь для красивых названий
-from importlib import import_module
+from .victorina import run as victorina_run, welcome as victorina_welcome
+from .media_bot import run as media_run, welcome as media_welcome
 
 MODULES_NAME = {
-    "Викторина": "victorina",
-    "Медиа": "media_bot"
+    "Викторина",
+    "Медиа"
 }
 
-# Динамически загружаем функции run из указанных модулей
-MODULES = {name.lower(): import_module(f'sm_code.{module_name}').run
-           for name, module_name in MODULES_NAME.items()}
+MODULES = {
+    'викторина': victorina_run,
+    'медиа': media_run
+}
 
-# Динамически загружаем функции welcome из указанных модулей
-WELCOME = {name.lower(): import_module(f'sm_code.{module_name}').welcome
-           for name, module_name in MODULES_NAME.items()}
+WELCOME = {
+    'викторина': victorina_welcome,
+    'медиа': media_welcome
+}
