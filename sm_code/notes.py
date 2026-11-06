@@ -26,6 +26,24 @@ def list_notes(user_id):
         rows = connection.execute("SELECT text FROM notes WHERE user_id= ? ORDER BY id DESC LIMIT 5", (user_id,)).fetchall()
     return "\n".join(f"(index + 1), {row[0]}" for index, row in enumerate(rows)) or "Заметок нет"
 
+# TODO Сделать из кода модуль
+#  - send_message - использовать общий
+#  - сделать welcome() и выделить run(), не забыть про возврат bool
+#
+# TODO Исправить откровенные ошибки
+#  - строка 22
+#  - строка 27
+#
+# TODO Доработки (легкие)
+#  Добавить 'логи' старта (по аналогии)
+#  Добавить команду для выхода
+#  Привести сообщения к одному языку, стандартному виду
+#
+# TODO Доработки (SQL)
+#  В запросе добавления явно указать колонки для вставки
+#  Добавить возможность удаления всех заметок
+#  Добавить коммит после добавления (для корректности выполнения DML)
+
 def send_message(vk, peer_id, text):
     vk.messages.send(peer_id=peer_id, message=text, random_id=random.randint(1, 2_147_483_647))
 
