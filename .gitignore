@@ -2,3 +2,6 @@
 *.env
 /.idea/
 /notes.sqlite3
+/venv/
+/sm_code/notes.sqlite3
+/test.py

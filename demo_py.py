@@ -71,6 +71,6 @@ def _send_message_select_block(vk, peer_id):
 if __name__ == "__main__":
     print('demo_py started...')
     print(f"Token {'found' if TOKEN else 'not found'}")
-    print(f"Token {'correct' if TOKEN.startswith("vk1.a.") and len(TOKEN) > 100 else 'incorrect'}")
+    # print(f"Token {'correct' if TOKEN.startswith("vk1.a.") and len(TOKEN) > 100 else 'incorrect'}")
     print(f"Group ID {GROUP_ID}")
     main()
